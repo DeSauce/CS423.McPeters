@@ -45,21 +45,22 @@ public class ArtworkInteraction : MonoBehaviour
     // This function teleports the character to a random location
     private void TeleportCharacter()
     {
-        float minX = -5f;
-        float maxX = 5f;
-        float minZ = -5f;
-        float maxZ = 5f;
+        float minX = -4f;
+        float maxX = 4f;
+        float minZ = -4f;
+        float maxZ = 4f;
 
-        
         Vector3 randomPosition = new Vector3(
             Random.Range(minX, maxX),
-            transform.position.y, 
+            transform.position.y,
             Random.Range(minZ, maxZ)
         );
 
-        // Moves the player character to the random position
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        // Find all GameObjects with the "Player" tag
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+
+        // Loop through all "Player" objects and move them to the random position
+        foreach (GameObject player in players)
         {
             player.transform.position = randomPosition;
         }
